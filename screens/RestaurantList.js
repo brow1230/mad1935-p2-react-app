@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
-import { Text, View, Button } from 'react-native'
+import { View  } from 'react-native'
+import {AppLoading} from 'expo' 
+
+import { Container, Header, Content, List, ListItem, Thumbnail, Text, Left, Body, Right, Button } from 'native-base';
 
 export default class RestaurantList extends Component {
 
     constructor(props){
         super(props);
         this.state = {
+            ready:false,
+            restaurantList: [],
             data: ""
         }
     }
@@ -32,21 +37,46 @@ export default class RestaurantList extends Component {
         })
         .then((data) => {
             this.setState({
-                data: JSON.stringify(data)
+                data : data,
+                ready: true
             })
+            console.log(this.state.data.businesses[0])
+            alert("boom got it")
         })
         .catch((err) => {
             alert(err)
         })
     }
-
+    componentDidMount(){
+        this.fetchData()
+    }
     render() {
+        if (!this.state.ready){
+            return <AppLoading/>
+        }
+        const restaurant = this.state.data.businesses[0].alias
         return (
-            <View>
-                <Button title="Click" onPress={this.fetchData}/>
-                <Text> This is gonna be the list. </Text>
-                <Text> This is gonna be the list. </Text>
-            </View>
-        )
+            <Container>
+              <Content>
+                <List>
+                  <ListItem thumbnail>
+                    <Left>
+                       {/* Add source tag to thumbnail for img...  */}
+                      {/* <Thumbnail square  /> */}
+                    </Left>
+                    <Body>
+                        <Text>McDonalds</Text>
+                      <Text note numberOfLines={1}>The Best (HA!) Burgers. To die for.</Text>
+                    </Body>
+                    <Right>
+                      <Button transparent>
+                        <Text>View</Text>
+                      </Button>
+                    </Right>
+                  </ListItem>
+                </List> 
+              </Content>
+            </Container>
+          );
     }
 }

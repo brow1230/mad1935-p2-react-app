@@ -1,15 +1,31 @@
 import React from 'react';
 import {createAppContainer} from 'react-navigation'
 import {createStackNavigator} from 'react-navigation-stack'
-import RestaurantList from './screens/RestaurantList'
+import Home from './screens/Home'
+import RestaurantList from './screens/RestaurantList';
 const AppNav = createStackNavigator ({
   Home: {
-    screen: RestaurantList,
+    screen: Home,
     navigationOptions : {
       title: 'Home',
       headerStyle: {
-        backgroundColor: 'purple'
-      } 
+        backgroundColor: '#CD1204',
+      },
+      headerTitleStyle: {
+        color: 'white'
+      }
+    }
+  },
+  RestaurantList: {
+    screen: RestaurantList,
+    navigationOptions: {
+      title: 'Restaurant List',
+      headerStyle: {
+        backgroundColor: '#CD1204',
+      },
+      headerTitleStyle: {
+        color: 'white'
+      }
     }
   }
 })
