@@ -3,6 +3,7 @@ import {createAppContainer} from 'react-navigation'
 import {createStackNavigator} from 'react-navigation-stack'
 import Home from './screens/Home'
 import RestaurantList from './screens/RestaurantList';
+import RestaurantDetails from './screens/RestaurantDetails.js'
 const AppNav = createStackNavigator ({
   Home: {
     screen: Home,
@@ -20,6 +21,18 @@ const AppNav = createStackNavigator ({
     screen: RestaurantList,
     navigationOptions: {
       title: 'Restaurant List',
+      headerStyle: {
+        backgroundColor: '#CD1204',
+      },
+      headerTitleStyle: {
+        color: 'white'
+      }
+    }
+  },
+  RestaurantDetails: {
+    screen: RestaurantDetails,
+    navigationOptions: {
+      // title: 'Restaurant Details',
       headerStyle: {
         backgroundColor: '#CD1204',
       },

@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { View, Platform  } from 'react-native'
+import { View, Platform, FlatList  } from 'react-native'
 import {AppLoading} from 'expo'
 import Constants from 'expo-constants'
 import * as Location from 'expo-location'
 import * as Permissions from 'expo-permissions'
-
 import { Container, Header, Content, List, ListItem, Thumbnail, Text, Left, Body, Right, Button } from 'native-base';
 
 export default class RestaurantList extends Component {
@@ -61,8 +60,10 @@ export default class RestaurantList extends Component {
             }
         })
         .then((data) => {
-            let stringData = JSON.stringify(data)
-            this.setState({data: stringData, ready: true})
+            this.setState({
+                data : data.businesses,
+                ready: true
+            })
         })
         .catch((err) => {
             alert(err)
@@ -73,27 +74,30 @@ export default class RestaurantList extends Component {
         if (!this.state.ready){
             return <AppLoading/>
         }
-        //const restaurant = this.state.data.businesses[0].alias
         return (
             <Container>
               <Content>
-                <List>
-                  <ListItem thumbnail>
+              <FlatList
+                    data={this.state.data}
+                    keyExtractor={({id}, i) => id}
+                    renderItem = {({item})=>(
+                  <ListItem thumbnail onPress={() => this.props.navigation.navigate('RestaurantDetails',{restaurant: item})}>
                     <Left>
                        {/* Add source tag to thumbnail for img...  */}
                       {/* <Thumbnail square  /> */}
                     </Left>
                     <Body>
-                        <Text>McDonalds</Text>
-                        <Text note numberOfLines={1}>The Best (HA!) Burgers. To die for.</Text>
+                      <Text>{item.name}</Text>
+                    <Text note numberOfLines={2}>{item.price} {item.rating} *</Text>
                     </Body>
                     <Right>
-                      <Button transparent>
-                        <Text>View</Text>
-                      </Button>
+                      {/* <Button transparent onPress={() => this.props.navigation.navigate('RestaurantDetails',{restaurant: item})}> */}
+                        {/* <Text>WE can find something to add in for the left and right!!</Text> */}
+                      {/* </Button> */}
                     </Right>
                   </ListItem>
-                </List> 
+                  )}
+              />
               </Content>
             </Container>
           );
