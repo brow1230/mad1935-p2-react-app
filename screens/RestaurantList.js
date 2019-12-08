@@ -61,7 +61,7 @@ export default class RestaurantList extends Component {
                     data={this.state.data}
                     keyExtractor={({id}, i) => id}
                     renderItem = {({item})=>(
-                  <ListItem thumbnail>
+                  <ListItem thumbnail onPress={() => this.props.navigation.navigate('RestaurantDetails',{restaurant: item})}>
                     <Left>
                        {/* Add source tag to thumbnail for img...  */}
                       {/* <Thumbnail square  /> */}
@@ -71,9 +71,9 @@ export default class RestaurantList extends Component {
                     <Text note numberOfLines={2}>{item.price} {item.rating} *</Text>
                     </Body>
                     <Right>
-                      <Button transparent restaurant={item}>
-                        <Text>View</Text>
-                      </Button>
+                      {/* <Button transparent onPress={() => this.props.navigation.navigate('RestaurantDetails',{restaurant: item})}> */}
+                        {/* <Text>WE can find something to add in for the left and right!!</Text> */}
+                      {/* </Button> */}
                     </Right>
                   </ListItem>
                   )}

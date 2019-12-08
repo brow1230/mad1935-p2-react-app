@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import {AppLoading} from 'expo' 
 import { Content, Text, Button} from 'native-base'
 import {Ionicons} from '@expo/vector-icons'
@@ -26,10 +26,20 @@ export default class Home extends Component {
         }
         return (
             <View>
-                <Button onPress={() => this.props.navigation.navigate('RestaurantList')}>
+                <Button danger onPress={() => this.props.navigation.navigate('RestaurantList')}>
                     <Text>Tap to Load resutanrats</Text>
                 </Button>
             </View>
         )
     }
 }
+const styles = StyleSheet.create({
+    container: {
+        flex: 1 ,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    button: {
+        flexShrink: 1
+    }
+})
