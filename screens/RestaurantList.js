@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View  } from 'react-native'
+import { View, FlatList  } from 'react-native'
 import {AppLoading} from 'expo' 
 
 import { Container, Header, Content, List, ListItem, Thumbnail, Text, Left, Body, Right, Button } from 'native-base';
@@ -37,10 +37,9 @@ export default class RestaurantList extends Component {
         })
         .then((data) => {
             this.setState({
-                data : data,
+                data : data.businesses,
                 ready: true
             })
-            console.log(this.state.data.businesses[0])
             alert("boom got it")
         })
         .catch((err) => {
@@ -54,27 +53,31 @@ export default class RestaurantList extends Component {
         if (!this.state.ready){
             return <AppLoading/>
         }
-        const restaurant = this.state.data.businesses[0].alias
+        // const restaurant = this.state.data.businesses[0]
         return (
             <Container>
               <Content>
-                <List>
+              <FlatList
+                    data={this.state.data}
+                    keyExtractor={({id}, i) => id}
+                    renderItem = {({item})=>(
                   <ListItem thumbnail>
                     <Left>
                        {/* Add source tag to thumbnail for img...  */}
                       {/* <Thumbnail square  /> */}
                     </Left>
                     <Body>
-                        <Text>McDonalds</Text>
-                      <Text note numberOfLines={1}>The Best (HA!) Burgers. To die for.</Text>
+                      <Text>{item.name}</Text>
+                    <Text note numberOfLines={2}>{item.price} {item.rating} *</Text>
                     </Body>
                     <Right>
-                      <Button transparent>
+                      <Button transparent restaurant={item}>
                         <Text>View</Text>
                       </Button>
                     </Right>
                   </ListItem>
-                </List> 
+                  )}
+              />
               </Content>
             </Container>
           );
