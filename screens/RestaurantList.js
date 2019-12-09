@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { View, Platform, FlatList  } from 'react-native'
+import { View, Platform, FlatList, ActivityIndicator, StyleSheet } from 'react-native'
 import {AppLoading} from 'expo'
 import Constants from 'expo-constants'
 import * as Location from 'expo-location'
 import * as Permissions from 'expo-permissions'
 import { Container, Header, Content, List, ListItem, Thumbnail, Text, Left, Body, Right, Button } from 'native-base';
+import { LinearGradient } from 'expo-linear-gradient'
 
 export default class RestaurantList extends Component {
 
@@ -20,7 +21,7 @@ export default class RestaurantList extends Component {
     }
 
     componentDidMount(){
-        if (Platform.OS === 'android' && !Constants.isDevice) {
+      if (Platform.OS === 'android' && !Constants.isDevice) {
             console.log("This will only work on a device.")
           } else {
             this.getLocationAsync()
@@ -72,7 +73,11 @@ export default class RestaurantList extends Component {
 
     render() {
         if (!this.state.ready){
-            return <AppLoading/>
+            return (
+              <View>
+                <ActivityIndicator size="large" color="#888882" style={this.styles.spinner}/>
+              </View>
+            )
         }
         return (
             <Container>
@@ -102,4 +107,10 @@ export default class RestaurantList extends Component {
             </Container>
           );
     }
+
+    styles = StyleSheet.create({
+      spinner: {
+        margin: 100
+      }
+    })
 }
