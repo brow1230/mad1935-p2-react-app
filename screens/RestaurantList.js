@@ -16,7 +16,7 @@ export default class RestaurantList extends Component {
             status: "",
             restaurantList: [],
             ll: {lat: "", lng: ""},
-            data: ""
+            businesses: ""
         }
     }
 
@@ -62,7 +62,7 @@ export default class RestaurantList extends Component {
         })
         .then((data) => {
             this.setState({
-                data : data.businesses,
+                businesses: data.businesses,
                 ready: true
             })
         })
@@ -83,21 +83,21 @@ export default class RestaurantList extends Component {
             <Container>
               <Content>
               <FlatList
-                    data={this.state.data}
+                    data={this.state.businesses}
                     keyExtractor={({id}, i) => id}
                     renderItem = {({item})=>(
-                  <ListItem thumbnail onPress={() => this.props.navigation.navigate('RestaurantDetails',{restaurant: item})}>
+                  <ListItem thumbnail onPress={() => this.props.navigation.navigate('RestaurantDetails', {restaurant: item})}>
                     <Left>
-                       {/* Add source tag to thumbnail for img...  */}
+                      {/* Add source tag to thumbnail for img...  */}
                       {/* <Thumbnail square  /> */}
                     </Left>
                     <Body>
                       <Text>{item.name}</Text>
-                    <Text note numberOfLines={2}>{item.price} {item.rating} *</Text>
+                      <Text note numberOfLines={1}>{(Math.round((item.distance / 1000) * 100) / 100).toFixed(2)}km away</Text>
                     </Body>
                     <Right>
                       {/* <Button transparent onPress={() => this.props.navigation.navigate('RestaurantDetails',{restaurant: item})}> */}
-                        {/* <Text>WE can find something to add in for the left and right!!</Text> */}
+                      {/* <Text>WE can find something to add in for the left and right!!</Text> */}
                       {/* </Button> */}
                     </Right>
                   </ListItem>
