@@ -88,7 +88,7 @@ export default class RestaurantList extends Component {
                   <ListItem thumbnail onPress={() => this.props.navigation.navigate('RestaurantDetails', {restaurant: item})}>
                     <Left>
                       {/* Add source tag to thumbnail for img...  */}
-                      {/* <Thumbnail square  /> */}
+                      <Thumbnail square source= {{uri: item.image_url}} />
                     </Left>
                     <Body>
                       <Text>{item.name}</Text>
