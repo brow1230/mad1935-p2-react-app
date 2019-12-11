@@ -26,6 +26,8 @@ export default class RestaurantList extends Component {
       NetInfo.fetch().then(state => {
         if(state.isConnected){
             this.setState({ isConnected: true })
+        }else{
+          return
         }
       })
       .catch((err) => {
