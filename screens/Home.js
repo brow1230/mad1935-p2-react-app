@@ -26,9 +26,7 @@ export default class Home extends Component {
     render() {
         if (!this.state.isReady){
             return (
-                <View>
-                    <ActivityIndicator size="large" color="#888882" style={this.styles.spinner}/>
-                </View>
+                <AppLoading/>
             )
         }
         return (
@@ -48,9 +46,6 @@ export default class Home extends Component {
         },
         button: {
             flexShrink: 1
-        },
-        spinner: {
-            margin: 100
         }
     })
 }
