@@ -45,7 +45,10 @@ export default class Home extends Component {
             paddingTop: 50
         },
         btn:{
-            backgroundColor: "#666666"
+            backgroundColor: "#666666",
+            shadowOffset:{width: 2,  height: 3},
+            shadowColor: "#666666",
+            shadowOpacity: 0.5
         }
             
     })
