@@ -10,7 +10,7 @@ const AppNav = createStackNavigator ({
     navigationOptions : {
       title: 'Home',
       headerStyle: {
-        backgroundColor: '#CD1204',
+        backgroundColor: '#D32323',
       },
       headerTitleStyle: {
         color: 'white'
@@ -22,7 +22,7 @@ const AppNav = createStackNavigator ({
     navigationOptions: {
       title: 'Restaurant List',
       headerStyle: {
-        backgroundColor: '#CD1204',
+        backgroundColor: '#D32323',
       },
       headerTitleStyle: {
         color: 'white'
@@ -34,7 +34,7 @@ const AppNav = createStackNavigator ({
     navigationOptions: {
       // title: 'Restaurant Details',
       headerStyle: {
-        backgroundColor: '#CD1204',
+        backgroundColor: '#D32323',
       },
       headerTitleStyle: {
         color: 'white'

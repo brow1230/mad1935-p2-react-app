@@ -26,27 +26,25 @@ export default class Home extends Component {
     render() {
         if (!this.state.isReady){
             return (
-                <AppLoading/>
+                <AppLoading />
             )
         }
         return (
-            <View>
-                <Button danger onPress={() => this.props.navigation.navigate('RestaurantList')}>
-                    <Text>Tap to Load resutanrats</Text>
+            <View style={this.styles.view}>
+                <Button style={this.styles.btn} onPress={() => this.props.navigation.navigate('RestaurantList')}>
+                    <Text style={this.styles.text}>Load Food</Text>
                 </Button>
             </View>
         )
     }
 
     styles = StyleSheet.create({
-        container: {
-            flex: 1 ,
-            justifyContent: 'center',
-            alignItems: 'center',
+        view: {
+            flexDirection: "row",
+            justifyContent: "center",
+            paddingTop: 50
         },
-        button: {
-            flexShrink: 1
-        }
+            backgroundColor: "#666666"
     })
 }
 
