@@ -55,28 +55,46 @@ export default class RestaurantDetails extends Component {
             alert(err)
         })
     }
-    renderPage(image, index) {
-        const Banner = {
-            width: Dimensions.get('screen').width,
-            height: 200 
-        }
-        return (
-            <View key={index}>
-                <Image style={{ width: Banner.width, height: Banner.height }} source={{ uri: image }} />
-            </View>
-        );
+    renderPage(image, index, ) {
+            // return(
+            //     <View key={index}>
+            //         <Image style={{ width: Banner.width, height: Banner.height }} source={require("../assets/Artboard1.png")} />
+            //     </View>
+            // )
+            console.log("run")
+            return (
+                <View key={index}>
+                    <Image style={{ width: styles.banner.width, height: styles.banner.height }} source={{ uri: image }} />
+                </View>
+            );
+                
     }
+    
     
     render() {
         if(!this.state.ready){
             return <AppLoading/>
         }else{
-            const images = this.state.extraRestaurantInfo.photos
-            
+            let images = this.state.extraRestaurantInfo.photos
+            console.log(images)
+            let map 
+            if (!images.length){
+                console.log('false')
+                map = <View key={1}>
+                        <Image style={{ width: styles.banner.width, height: styles.banner.height }} source={require('../assets/Artboard1.png')} />
+                      </View>
+            }else{
+                map = images.map((image, index) => this.renderPage(image, index))
+
+            }
             return (
                 <View style={styles.container}>
-                    <Carousel style={styles.carousel}>
-                        {images.map((image, index) => this.renderPage(image, index))}   
+                    {/* {carousel} */}
+                    <Carousel 
+                        style={styles.carousel}
+                        showsPageIndicator={false}
+                        >
+                        {map}
                     </Carousel>
                     <Text style={styles.name}> {this.state.extraRestaurantInfo.name} </Text>
                     <Text> {this.state.extraRestaurantInfo.location.display_address[0]} </Text>
@@ -90,7 +108,6 @@ export default class RestaurantDetails extends Component {
         }
     }
 }
-
 const styles = StyleSheet.create({
     container:{
         flex : 1, 
@@ -101,4 +118,8 @@ const styles = StyleSheet.create({
         fontSize: 26,
         fontWeight: '300'
     },
+    banner: {
+        width: Dimensions.get('screen').width,
+        height: 200 
+    }
 })
