@@ -75,12 +75,15 @@ export default class RestaurantDetails extends Component {
             
             return (
                 <View style={styles.container}>
-                    <Carousel>
+                    <Carousel style={styles.carousel}>
                         {images.map((image, index) => this.renderPage(image, index))}   
                     </Carousel>
                     <Text style={styles.name}> {this.state.extraRestaurantInfo.name} </Text>
                     <Text> {this.state.extraRestaurantInfo.location.display_address[0]} </Text>
                     <Text> {this.state.extraRestaurantInfo.location.display_address[1]} </Text>
+                    <Text> {this.state.extraRestaurantInfo.price} </Text>
+                    <Text> {this.state.extraRestaurantInfo.rating} </Text>
+                    <Text> {this.state.extraRestaurantInfo.display_phone} </Text>
                     <Text> {Math.floor(this.state.restaurant.distance)}m Away </Text>
                 </View>
             )
@@ -92,11 +95,10 @@ const styles = StyleSheet.create({
     container:{
         flex : 1, 
         backgroundColor: 'white',
-        paddingHorizontal: '5%',
-        paddingTop: '5%',
+        // paddingHorizontal: '5%',
     },
     name: {
         fontSize: 26,
         fontWeight: '300'
-    }
+    },
 })
