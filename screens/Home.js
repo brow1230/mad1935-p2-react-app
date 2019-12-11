@@ -44,9 +44,7 @@ export default class Home extends Component {
             justifyContent: "center",
             paddingTop: 50
         },
-        btn: {
             backgroundColor: "#666666"
-        }
     })
 }
 
