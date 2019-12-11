@@ -6,6 +6,7 @@ import * as Location from 'expo-location'
 import * as Permissions from 'expo-permissions'
 import { Container, Header, Content, List, ListItem, Thumbnail, Text, Left, Body, Right, Button } from 'native-base';
 import { LinearGradient } from 'expo-linear-gradient'
+import NetInfo from "@react-native-community/netinfo"
 
 export default class RestaurantList extends Component {
 
@@ -13,6 +14,7 @@ export default class RestaurantList extends Component {
         super(props);
         this.state = {
             ready: false,
+            isConnected: false,
             status: "",
             restaurantList: [],
             ll: {lat: "", lng: ""},
@@ -21,6 +23,15 @@ export default class RestaurantList extends Component {
     }
 
     componentDidMount(){
+      NetInfo.fetch().then(state => {
+        if(state.isConnected){
+            this.setState({ isConnected: true })
+        }
+      })
+      .catch((err) => {
+          console.log(err)
+      });
+
       if (Platform.OS === 'android' && !Constants.isDevice) {
             console.log("This will only work on a device.")
           } else {
@@ -71,6 +82,14 @@ export default class RestaurantList extends Component {
     }
 
     render() {
+        if(!this.state.isConnected){
+          return (
+            <View style={this.styles.noInternet}>
+              <Text>No internet connection.</Text>
+            </View>
+          )
+        }
+
         if (!this.state.ready){
             return (
               <View>
@@ -110,6 +129,11 @@ export default class RestaurantList extends Component {
     styles = StyleSheet.create({
       spinner: {
         margin: 100
+      },
+      noInternet: {
+        flexDirection: "row",
+        justifyContent: "center",
+        paddingTop: 50
       }
     })
 }
