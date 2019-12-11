@@ -92,7 +92,7 @@ export default class RestaurantDetails extends Component {
                     {/* {carousel} */}
                     <Carousel 
                         style={styles.carousel}
-                        showsPageIndicator={false}
+                        // pageIndicatorStyle={{color:'#D32323'}}
                         >
                         {map}
                     </Carousel>

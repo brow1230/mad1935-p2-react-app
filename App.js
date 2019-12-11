@@ -26,7 +26,8 @@ const AppNav = createStackNavigator ({
       },
       headerTitleStyle: {
         color: 'white'
-      }
+      },
+      // headerback
     }
   },
   RestaurantDetails: {
