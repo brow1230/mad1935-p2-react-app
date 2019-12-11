@@ -56,6 +56,10 @@ export default class RestaurantDetails extends Component {
         })
     }
     renderPage(image, index) {
+        const Banner = {
+            width: Dimensions.get('screen').width,
+            height: 200 
+        }
         return (
             <View key={index}>
                 <Image style={{ width: Banner.width, height: Banner.height }} source={{ uri: image }} />
