@@ -11,6 +11,7 @@ export default class Home extends Component {
         super(props);
         this.state = {
             isReady: false,
+            isConnected: false
         };
     }
 
@@ -29,6 +30,7 @@ export default class Home extends Component {
                 <AppLoading />
             )
         }
+
         return (
             <View style={this.styles.view}>
                 <Button style={this.styles.btn} onPress={() => this.props.navigation.navigate('RestaurantList')}>
