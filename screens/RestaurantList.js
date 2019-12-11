@@ -48,7 +48,6 @@ export default class RestaurantList extends Component {
         let header = new Headers()
 
         header.append("Authorization", authKey)
-        header.append("Postman-Token", "1cf6818e-abe6-4a94-8c4b-71fe51408d67")
 
         let req = new Request(uri, {method: "GET", headers: header})
     
