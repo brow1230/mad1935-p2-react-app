@@ -122,13 +122,13 @@ export default class RestaurantDetails extends Component {
                         >
                         {map}
                     </Carousel>
-                    <Image source={source} />
+                    <Image style={styles.rating} source={source} />
                     <Text style={styles.name}> {this.state.extraRestaurantInfo.name} </Text>
-                    <Text> {this.state.extraRestaurantInfo.location.display_address[0]} </Text>
-                    <Text> {this.state.extraRestaurantInfo.location.display_address[1]} </Text>
-                    <Text> {this.state.extraRestaurantInfo.price} </Text>
-                    <Text> {this.state.extraRestaurantInfo.display_phone} </Text>
-                    <Text> {Math.floor(this.state.restaurant.distance)}m Away </Text>
+                    <Text style={styles.text}> {this.state.extraRestaurantInfo.location.display_address[0]} </Text>
+                    <Text style={styles.text}> {this.state.extraRestaurantInfo.location.display_address[1]} </Text>
+                    <Text style={styles.text}> {this.state.extraRestaurantInfo.price} </Text>
+                    <Text style={styles.text}> {this.state.extraRestaurantInfo.display_phone} </Text>
+                    <Text style={styles.text}> {Math.floor(this.state.restaurant.distance)}m Away </Text>
                 </View>
             )
         }
@@ -142,10 +142,21 @@ const styles = StyleSheet.create({
     },
     name: {
         fontSize: 26,
-        fontWeight: '300'
+        fontWeight: '300',
+        paddingHorizontal: '5%'
+
     },
     banner: {
         width: Dimensions.get('screen').width,
         height: 200 
+    },
+    text:{
+        paddingHorizontal: '5%'
+    },
+    rating:{
+        // width:'10%',
+        marginTop:'2.3%',
+        paddingVertical:'2%',
+        alignSelf:'center'
     }
 })
