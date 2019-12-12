@@ -69,9 +69,37 @@ export default class RestaurantDetails extends Component {
             );
                 
     }
+    //wow. much star
+    starSelector(){
+        let star = this.state.extraRestaurantInfo.rating
+        switch(star){
+            case 0:
+                return require('../img/stars_regular_0.png')
+            case 1:
+                return require('../img/stars_regular_1.png')
+            case 1.5:
+                return require('../img/stars_regular_1_half.png')
+            case 2:
+                return require('../img/stars_regular_2.png')
+            case 2.5:
+                return require('../img/stars_regular_2_half.png')
+            case 3:
+                return require('../img/stars_regular_3.png')
+            case 3.5:
+                return require('../img/stars_regular_3_half.png')
+            case 4:
+                return require('../img/stars_regular_4.png')
+            case 4.5:
+                return require('../img/stars_regular_4_half.png')
+            case 5:
+                return require('../img/stars_regular_5.png')
+        }
+    }
     
     
     render() {
+        let source = this.starSelector()
+        console.log(source)
         if(!this.state.ready){
             return <AppLoading/>
         }else{
@@ -89,20 +117,18 @@ export default class RestaurantDetails extends Component {
             }
             return (
                 <View style={styles.container}>
-                    {/* {carousel} */}
                     <Carousel 
                         style={styles.carousel}
-                        // pageIndicatorStyle={{color:'#D32323'}}
                         >
                         {map}
                     </Carousel>
+                    <Image style={styles.rating} source={source} />
                     <Text style={styles.name}> {this.state.extraRestaurantInfo.name} </Text>
-                    <Text> {this.state.extraRestaurantInfo.location.display_address[0]} </Text>
-                    <Text> {this.state.extraRestaurantInfo.location.display_address[1]} </Text>
-                    <Text> {this.state.extraRestaurantInfo.price} </Text>
-                    <Text> {this.state.extraRestaurantInfo.rating} </Text>
-                    <Text> {this.state.extraRestaurantInfo.display_phone} </Text>
-                    <Text> {Math.floor(this.state.restaurant.distance)}m Away </Text>
+                    <Text style={styles.text}> {this.state.extraRestaurantInfo.location.display_address[0]} </Text>
+                    <Text style={styles.text}> {this.state.extraRestaurantInfo.location.display_address[1]} </Text>
+                    <Text style={styles.text}> {this.state.extraRestaurantInfo.price} </Text>
+                    <Text style={styles.text}> {this.state.extraRestaurantInfo.display_phone} </Text>
+                    <Text style={styles.text}> {Math.floor(this.state.restaurant.distance)}m Away </Text>
                 </View>
             )
         }
@@ -116,10 +142,21 @@ const styles = StyleSheet.create({
     },
     name: {
         fontSize: 26,
-        fontWeight: '300'
+        fontWeight: '300',
+        paddingHorizontal: '5%'
+
     },
     banner: {
         width: Dimensions.get('screen').width,
         height: 200 
+    },
+    text:{
+        paddingHorizontal: '5%'
+    },
+    rating:{
+        // width:'10%',
+        marginTop:'2.3%',
+        paddingVertical:'2%',
+        alignSelf:'center'
     }
 })
