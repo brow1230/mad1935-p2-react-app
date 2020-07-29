@@ -4,7 +4,6 @@ import { AppLoading } from 'expo'
 import { Content, Text, Button } from 'native-base'
 import { Ionicons } from '@expo/vector-icons'
 import * as Font from 'expo-font'
-import RestaurantList from './RestaurantList'
 
 export default class Home extends Component {
     
@@ -33,13 +32,11 @@ export default class Home extends Component {
         }
 
         return (
-            // <View style={this.styles.view}>
-            //     <Button style={this.styles.btn} onPress={() => this.props.navigation.navigate('RestaurantList')}>
-            //         <Text style={this.styles.text}>Load Food</Text>
-            //     </Button>
-            // </View>
-            <RestaurantList/>
-
+            <View style={this.styles.view}>
+                <Button style={this.styles.btn} onPress={() => this.props.navigation.navigate('RestaurantList')}>
+                    <Text style={this.styles.text}>Load Food</Text>
+                </Button>
+            </View>
         )
     }
 
