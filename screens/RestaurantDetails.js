@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, Image, Dimensions } from 'react-native'
 import {AppLoading} from 'expo'
-import Carousel from 'react-native-banner-carousel'
+import Carousel from '../modified_node_module/react-native-banner-carousel'
 
 export default class RestaurantDetails extends Component {
     static navigationOptions = ({navigation}) => {
