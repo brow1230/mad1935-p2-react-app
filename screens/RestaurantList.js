@@ -73,6 +73,11 @@ export default class RestaurantList extends Component {
             }
         })
         .then((data) => {
+          data.businesses.map(item => {
+            if(item.image_url == ""){
+              item.image_url = "https://via.placeholder.com/50"
+            }
+          }) 
             this.setState({
                 businesses: data.businesses,
                 ready: true
@@ -81,7 +86,7 @@ export default class RestaurantList extends Component {
         .catch((err) => {
             alert(err)
         })
-    }
+    } 
 
     render() {
         if(!this.state.isConnected){
@@ -99,6 +104,7 @@ export default class RestaurantList extends Component {
               </View>
             )
         }
+
         return (
             <Container>
               <Content>
@@ -108,8 +114,7 @@ export default class RestaurantList extends Component {
                     renderItem = {({item})=>(
                   <ListItem thumbnail onPress={() => this.props.navigation.navigate('RestaurantDetails', {restaurant: item})}>
                     <Left>
-                      {/* Add source tag to thumbnail for img...  */}
-                      <Thumbnail square source= {{uri: item.image_url}} />
+                      <Thumbnail square source= {{uri: item.image_url}}/>
                     </Left>
                     <Body>
                       <Text>{item.name}</Text>
@@ -117,7 +122,7 @@ export default class RestaurantList extends Component {
                     </Body>
                     <Right>
                       {/* <Button transparent onPress={() => this.props.navigation.navigate('RestaurantDetails',{restaurant: item})}> */}
-                      {/* <Text>WE can find something to add in for the left and right!!</Text> */}
+                      {/* We could find something to add in for the left and right!! */}
                       {/* </Button> */}
                     </Right>
                   </ListItem>
